@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.btn-bg {
+    background: #DC2D40;
+    background: linear-gradient(0deg, #DC2D40, #DA6027);
+    transition: all 5000ms ease-in-out;
+}
+
+.btn-bg:hover {
+    background: #DC2D40;
+    background: linear-gradient(180deg, #DC2D40, #DA6027);
+}
+
+.topnav{
+    box-shadow: 2px 40px 40px black inset
+    /* box-shadow:  */
+}
+.responsive-nav{
+    display: none;
+}
+
+.translate-up{
+    transform: translateY(-120%);
+}
+
+.translate-down{
+    transform: translateY(0%);
+}
+
+@media only screen and (max-width: 1024px) {
+    .responsive-nav{
+        display: flex;
+    }
+  }
