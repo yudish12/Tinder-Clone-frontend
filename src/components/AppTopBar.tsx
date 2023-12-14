@@ -2,6 +2,7 @@ import React from 'react'
 import { FaUser } from 'react-icons/fa'
 import {Box,Tab,Tabs, Typography} from '@mui/material'
 import {  RiSettings2Fill } from 'react-icons/ri'
+import ProfilePage from '../pages/ProfilePage';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -50,25 +51,25 @@ const AppTopBar = () => {
             <FaUser className="text-white text-3xl" />
             <p className='text-lg text-white font-semibold capitalize' >username</p>
         </div>
-        <div className='cursor-pointer' >
+        <div onClick={()=>setValue(2)} className='cursor-pointer' >
             <RiSettings2Fill className="text-white hover:text-[#31304D] text-4xl"  />
         </div>
     </div>
     <Box sx={{ width: '100%' }}>
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <Tabs textColor='primary' value={value} onChange={handleChange} aria-label="basic tabs example">
-        <Tab style={{color:"white",fontWeight:"600"}} label="Item One" {...a11yProps(0)} />
-        <Tab style={{color:"white",fontWeight:"600"}} label="Item Two" {...a11yProps(1)} />
+        <Tab style={{color:"white",fontWeight:"600"}} label="Matches" {...a11yProps(0)} />
+        <Tab style={{color:"white",fontWeight:"600"}} label="Messages" {...a11yProps(1)} />
       </Tabs>
     </Box>
     <CustomTabPanel value={value} index={0}>
-      Item One
+      Matches
     </CustomTabPanel>
     <CustomTabPanel value={value} index={1}>
-      Item Two
+      Messages
     </CustomTabPanel>
     <CustomTabPanel value={value} index={2}>
-      Item Three
+      <ProfilePage/>
     </CustomTabPanel>
   </Box>
   </>

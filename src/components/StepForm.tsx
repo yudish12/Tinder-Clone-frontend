@@ -10,6 +10,7 @@ import { SearchBoxRetrieveResponse } from '@mapbox/search-js-core/dist/searchbox
 const StepForm = ({ activeStep, handleChange, formData,setFormData }: { activeStep: number, handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void, formData: formDataType,setFormData: React.Dispatch<React.SetStateAction<formDataType>>}) => {
 
     const locationRes = (res: SearchBoxRetrieveResponse) => {
+        console.log(res)
         setFormData((prev)=>({...prev,location:res}))
     }
 

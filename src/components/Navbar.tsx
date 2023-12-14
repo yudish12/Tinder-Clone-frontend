@@ -4,7 +4,7 @@ import { FaChevronDown , FaLanguage } from "react-icons/fa";
 import { HiOutlineSortDescending } from "react-icons/hi";
 import { HiOutlineSortAscending } from "react-icons/hi";
 
-const Navbar = () => {
+const Navbar = ({loginOpen}:{loginOpen:React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [isOpen,setIsOpen] = React.useState(false);
   return (
     <>
@@ -22,7 +22,7 @@ const Navbar = () => {
                 Language
             </button>
             
-            <button className='flex text-xl items-center font-semibold bg-white rounded-3xl px-12 py-1' >
+            <button onClick={()=>loginOpen(true)} className='flex text-xl items-center font-semibold bg-white rounded-3xl px-12 py-1' >
                 Login
             </button>
         </div>

@@ -13,10 +13,12 @@ const ProtectedRoute = ({children}:{children:ReactNode}) => {
     const [loading,setLoading] = useState<boolean>(true);
 
     useEffect(()=>{
-        console.log(import.meta.env.DEV_API_URI)
+        console.log(import.meta.env.VITE_DEV_API_URI)
         const checkUser = async()=>{
-            const res = await axios.get(`${import.meta.env.DEV_API_URI}/api/auth/check/${usertoken}`)
+            const res = await axios.get(`${import.meta.env.VITE_DEV_API_URI}/api/auth/check/${usertoken}`)
             if(res.status===200){
+                console.log(res)
+                console.log("done")
                 setisloggedIn(true);
                 setLoading(false);
             }else{
