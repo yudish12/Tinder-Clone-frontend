@@ -1,52 +1,63 @@
 
 import { ReactNode, useEffect, useState } from 'react'
 import { useAppSlector } from '../redux/store'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
-const ProtectedRoute = ({children}:{children:ReactNode}) => {
-    const {token} = useAppSlector((state)=>state.authSliceReducer)
+const ProtectedRoute = ({ children }: { children: ReactNode }) => {
+    const { token } = useAppSlector((state) => state.authSliceReducer)
     let usertoken = token
-    if(!token) usertoken = JSON.parse(localStorage.getItem('user')!)?.token 
-    const [isloggedIn,setisloggedIn] = useState<boolean>(false);
-    const [loading,setLoading] = useState<boolean>(true);
-
-    useEffect(()=>{
+    if (!token) usertoken = JSON.parse(localStorage.getItem('user')!)?.token
+    const [isloggedIn, setisloggedIn] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
+    const navigate = useNavigate()
+    useEffect(() => {
         console.log(import.meta.env.VITE_DEV_API_URI)
-        const checkUser = async()=>{
-            const res = await axios.get(`${import.meta.env.VITE_DEV_API_URI}/api/auth/check/${usertoken}`)
-            if(res.status===200){
-                console.log(res)
-                console.log("done")
-                setisloggedIn(true);
-                setLoading(false);
-            }else{
-                localStorage.clear()
-                setLoading(false);
+        const checkUser = async () => {
+            try {
+                const res = await axios.get(`${import.meta.env.VITE_DEV_API_URI}/api/auth/check/${usertoken}`)
+                console.log(res, 19)
+                if (res.status === 200) {
+                    console.log(res)
+                    console.log("done")
+                    setisloggedIn(true);
+                    setLoading(false);
+                } else {
+                    localStorage.clear()
+                    setLoading(false);
+                }
+            } catch (error:unknown) {
+                console.log(error)
+                if(error.response.data.message ==="invalid signature"){
+                    localStorage.clear()
+                    setLoading(false)
+                    navigate('/landing')
+                }
             }
+
         }
-        if(usertoken){
+        if (usertoken) {
             console.log(usertoken);
             checkUser();
-        }else{
+        } else {
             console.log(usertoken)
             localStorage.clear()
             setLoading(false)
         }
-    },[usertoken])
+    }, [usertoken])
 
     if (!isloggedIn && !loading) {
         return <Navigate to="/landing" />;
-      }
+    }
 
-      if(!isloggedIn && loading){
+    if (!isloggedIn && loading) {
         return <div>Loading...</div>
-      }
+    }
 
     return (
         <>
-           {children}
+            {children}
         </>
     )
 }

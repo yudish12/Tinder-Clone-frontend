@@ -45,4 +45,27 @@ input[type=number] {
     }
   }
 
+  .scrollable-section {
+    /* Set a fixed height for the section to enable scrolling */
+    height: 100%;
+    /* Enable overflow to allow content to be scrolled */
+    overflow: auto;
+  }
   
+  /* Define the styles for the scrollbar */
+  .scrollable-section::-webkit-scrollbar {
+    width: 4px; /* Width of the scrollbar */
+    border-radius: 2px;
+  }
+  
+  /* Handle (the draggable part) of the scrollbar */
+  .scrollable-section::-webkit-scrollbar-thumb {
+    background-color: #1976d2; /* Color of the scrollbar handle */
+    border-radius: 4px;
+  }
+  
+  /* Track (the area the handle moves along) of the scrollbar */
+  .scrollable-section::-webkit-scrollbar-track {
+    background-color: transparent; /* Color of the scrollbar track */
+    border-radius: 4px;
+  }

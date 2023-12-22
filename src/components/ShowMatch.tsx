@@ -1,8 +1,38 @@
 import { FaChevronCircleLeft, FaChevronCircleRight, FaExclamation } from 'react-icons/fa'
 import { HiHeart } from 'react-icons/hi'
 import { RiCloseCircleFill } from 'react-icons/ri'
+import { useEffect, useLayoutEffect, useState } from 'react'
+import { useAppDispatch, useAppSlector } from '../redux/store'
+import { getUsers, likeUser } from '../redux/slices/MatchSlice'
+import { setFilterRefetch } from '../redux/slices/FilterSlice'
 
 const ShowMatch = () => {
+    
+    const dispatch = useAppDispatch();
+    const {MatchSliceReducer,filterSliceReducer} = useAppSlector((state)=>state)
+    const {matches} = MatchSliceReducer
+
+    useLayoutEffect(()=>{
+      dispatch(getUsers())
+    },[filterSliceReducer.filterRefetch])
+
+    useEffect(()=>{
+        if(MatchSliceReducer.matches.length){
+            dispatch(setFilterRefetch(false))
+        }
+    },[MatchSliceReducer.matches])
+    
+    const [ind,setInd] = useState<number>(0);
+
+    const likeUserfunc = (userid:string)=>{
+        setInd((prev)=>prev+1)
+        dispatch(likeUser(userid))
+    }
+
+    if(MatchSliceReducer.loading){
+        return <div>Loading...</div>
+    }
+
   return (
     <div className=' h-full w-[50%] flex justify-center px-8 py-16'>
         <div style={{maxWidth:"350px",maxHeight:"500px"}} className="relative w-full h-full ">
@@ -17,11 +47,11 @@ const ShowMatch = () => {
             </div>
             <div className='flex absolute bottom-0 pb-12 px-2 flex-col justify-start items-start' >
                 <div className='flex text-white text-3xl font-bold justify-start gap-6' >
-                    <span>name</span>
-                    <span>age</span>
+                    <span>{matches[ind]?.name}</span>
+                    <span>{matches[0]?.age}</span>
                 </div>
                 <div>
-                    <span className='text-white font-bold text-xl' >lives in delhi</span>
+                    <span className='text-white font-bold text-xl' >lives in {matches[0]?.location.address.split(',')[0]}</span>
                 </div>
                 <div>
                     <span className='text-white font-bold text-xl' >3kms away</span>
@@ -29,9 +59,9 @@ const ShowMatch = () => {
             </div>
             <div style={{backgroundImage: "linear-gradient(transparent, black)"}} className='w-full h-[6rem] absolute bottom-0' ></div>
             <div className=' flex justify-around items-center'>
-                <HiHeart className="text-red-700 text-4xl hover:scale-125" />
-                <RiCloseCircleFill className="text-white text-4xl hover:scale-125" />
-                <FaExclamation className="text-[yellow] text-3xl hover:scale-125 " />
+                <HiHeart onClick={()=>likeUserfunc(matches[ind]?._id)} className="text-red-700 text-4xl hover:scale-125 cursor-pointer" />
+                <RiCloseCircleFill onClick={()=>setInd((prev)=>prev+1)} className="text-white text-4xl hover:scale-125 cursor-pointer" />
+                <FaExclamation className="text-[yellow] text-3xl hover:scale-125 cursor-pointer" />
             </div>
         </div>
     </div>
