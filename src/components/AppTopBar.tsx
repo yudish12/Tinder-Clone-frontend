@@ -1,9 +1,11 @@
 import React from 'react'
 import { FaUser } from 'react-icons/fa'
-import {Box,Tab,Tabs, Typography} from '@mui/material'
+import {Box,Tab,Tabs} from '@mui/material'
 import {  RiSettings2Fill } from 'react-icons/ri'
 import ProfilePage from '../pages/ProfilePage';
 import Photoscreen from '../pages/Photoscreen';
+import ShowMatchReq from './ShowMatchReq';
+import ShowMatched from './ShowMatched';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -23,8 +25,8 @@ interface TabPanelProps {
         {...other}
       >
         {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography className='text-white' >{children}</Typography>
+          <Box sx={{ p: 2 }}>
+            {children}
           </Box>
         )}
       </div>
@@ -59,15 +61,15 @@ const AppTopBar = () => {
     <Box sx={{ width: '100%',height:"100%" }}>
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <Tabs textColor='primary' value={value} onChange={handleChange} aria-label="basic tabs example">
-        <Tab style={{color:"white",fontWeight:"600"}} label="Matches" {...a11yProps(0)} />
+        <Tab style={{color:"white",fontWeight:"600"}} label="Requests" {...a11yProps(0)} />
         <Tab style={{color:"white",fontWeight:"600"}} label="Messages" {...a11yProps(1)} />
       </Tabs>
     </Box>
     <CustomTabPanel value={value} index={0}>
-      Matches
+      <ShowMatchReq/>
     </CustomTabPanel>
     <CustomTabPanel value={value} index={1}>
-      Messages
+    <ShowMatched/>
     </CustomTabPanel>
     <CustomTabPanel value={value} index={2}>
       <ProfilePage/>
@@ -75,6 +77,7 @@ const AppTopBar = () => {
     <CustomTabPanel value={value} index={3} >
       <Photoscreen/>
     </CustomTabPanel>
+
   </Box>
   </>
   )

@@ -1,5 +1,5 @@
 import {  SerializedError, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUserThunk, loginUserThunk, signupUserThunk,updateUserThunk } from "../thunks/Auththunks";
+import { getUserThunk, loginUserThunk, signupUserThunk,updateUserThunk, uploadPhotosThunk } from "../thunks/Auththunks";
 
 export type UserType = {
     _id: string;
@@ -55,6 +55,7 @@ export const signupUser = createAsyncThunk('users/signup',signupUserThunk)
 export const loginUser = createAsyncThunk('users/login',loginUserThunk)
 export const getUser = createAsyncThunk('users/get',getUserThunk)
 export const updateUser = createAsyncThunk('user/update',updateUserThunk)
+export const uploadPhotos = createAsyncThunk('user/upload',uploadPhotosThunk)
 
 const authSlice = createSlice({
     name:'auth',
@@ -125,6 +126,19 @@ const authSlice = createSlice({
             state.user = action.payload
         })
         builder.addCase(updateUser.rejected,(state,action)=>{
+            state.error = action.error
+            state.loading = false;
+        })
+        //upload photos builder
+        builder.addCase(uploadPhotos.pending,(state)=>{
+            state.loading = true
+        }),
+        builder.addCase(uploadPhotos.fulfilled,(state,action)=>{
+            state.loading = false
+            state.user = action.payload
+            console.log(action.payload)
+        })
+        builder.addCase(uploadPhotos.rejected,(state,action)=>{
             state.error = action.error
             state.loading = false;
         })

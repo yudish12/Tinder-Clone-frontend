@@ -103,7 +103,7 @@ const ProfilePage = () => {
     <ThemeProvider theme={theme1} >
       <div className="flex flex-col">
         <div className="border-b-2 border-gray-500" >
-          <Typography variant="h6"> Account Settings</Typography>
+          <Typography className="text-white" variant="h6"> Account Settings</Typography>
         </div>
         <div className="flex items-center mt-4 justify-between ">
           <label className='text-white' >Name</label>
@@ -156,29 +156,30 @@ const ProfilePage = () => {
         </div>
         <Button onClick={()=>dispatch(updateUser({...formData,token:userdetails.token}))} sx={{marginTop:"1rem"}} variant="contained" color="secondary" >Update Details</Button>
         <div className="border-b-2 mt-8 border-gray-500" >
-          <Typography variant="h6"> Filters</Typography>
+          <Typography className="text-white" variant="h6"> Filters</Typography>
         </div>
         <div className="border-b-2 p-4 border-gray-500" >
           <div className="flex items-center justify-between " >
-            <Typography id="age-slider-label" >Age Preference</Typography>
+            <Typography className="text-white" id="age-slider-label" >Age Preference</Typography>
             <Slider value={Number(filterDetails.ageFilter)} onChange={ageSliderChange} name="age" min={18} max={60} aria-label="age-slider-label" valueLabelDisplay="auto" />
           </div>
           <div className="flex items-center gap-4" >
-            <Typography id="age-switch" >Only show people in this range</Typography>
+            <Typography className="text-white" id="age-switch" >Only show people in this range</Typography>
             <Switch checked={filterDetails.ageMust} value={filterDetails.ageMust} onChange={()=>dispatch(setAgeMust(!filterDetails.ageMust))} aria-label="age-switch" />
           </div>
         </div>
         <div className="border-b-2 p-4 border-gray-500"  >
           <div className="flex items-center justify-between " >
-            <Typography id="distance-slider-label" >Distance Preference</Typography>
+            <Typography className="text-white" id="distance-slider-label" >Distance Preference</Typography>
             <Slider value={Number(filterDetails.distanceFilter)} onChange={distanceSliderChange} name="distance" min={2} max={200} aria-label="distance-slider-label" valueLabelDisplay="auto" />
           </div>
           <div className="flex items-center gap-4" >
-            <Typography id="age-switch" >Only show people in this range</Typography>
+            <Typography className="text-white" id="age-switch" >Only show people in this range</Typography>
             <Switch checked={filterDetails.distanceMust} onChange={()=>dispatch(setDistanceMust())} aria-label="age-switch" />
           </div>
         </div>
         <Button onClick={filterSubmit} sx={{marginTop:"2rem"}} variant="contained" color="secondary" >Apply Filters</Button>
+
       </div>
     </ThemeProvider>
   )

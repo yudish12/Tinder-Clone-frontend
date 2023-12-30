@@ -66,3 +66,21 @@ export const updateUserThunk = async(payload:userDetails&{token?:string|null},th
         return err
     }
 }
+
+export const uploadPhotosThunk = async(payload:React.MutableRefObject<FormData>,thunkApi:{ rejectWithValue: (arg0: unknown) => void; })=>{
+    try {
+        let token;
+        const str = localStorage.getItem('user');
+        if(str)token = JSON.parse(str).token
+        const resp = await axios.patch(`${import.meta.env.VITE_DEV_API_URI}/api/auth/upload/photos`,payload.current,{
+            headers:{
+                'Authorization':`Bearer ${token}`,
+                'Content-Type':'multipart/form-data'
+            },
+        })
+        return resp.data.data
+    } catch (error) {
+        const err = thunkApi.rejectWithValue(error)
+        return err
+    }
+}
