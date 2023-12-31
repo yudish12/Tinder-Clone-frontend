@@ -80,7 +80,6 @@ const authSlice = createSlice({
             state.email = action.payload.email
             state.name = action.payload.name;
             localStorage.setItem('user',JSON.stringify(action.payload))
-            console.log(state)
         })
         builder.addCase(signupUser.rejected,(state,action)=>{
             state.error = action.error
@@ -97,7 +96,6 @@ const authSlice = createSlice({
             state.email = action.payload.email
             state.name = action.payload.name;
             localStorage.setItem('user',JSON.stringify(action.payload))
-            console.log(state)
         })
         builder.addCase(loginUser.rejected,(state,action)=>{
             state.error = action.error
@@ -111,7 +109,6 @@ const authSlice = createSlice({
         builder.addCase(getUser.fulfilled,(state,action)=>{
             state.loading = false
             state.user = action.payload
-            console.log(state)
         })
         builder.addCase(getUser.rejected,(state,action)=>{
             state.error = action.error
@@ -136,7 +133,6 @@ const authSlice = createSlice({
         builder.addCase(uploadPhotos.fulfilled,(state,action)=>{
             state.loading = false
             state.user = action.payload
-            console.log(action.payload)
         })
         builder.addCase(uploadPhotos.rejected,(state,action)=>{
             state.error = action.error

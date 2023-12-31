@@ -41,7 +41,6 @@ const filterSlice = createSlice({
     },
     extraReducers:(builder)=>{
         builder.addCase(applyFilter.pending,(state)=>{
-            console.log(state)
             state.loading = true;
         })
         builder.addCase(applyFilter.fulfilled,(state,action)=>{

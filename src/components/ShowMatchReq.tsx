@@ -25,7 +25,7 @@ if(matchState.loading){
 
   return (
     <>
-        { matchState.requests.length && matchState.requests.map((e)=>
+        { matchState.requests.length? matchState.requests.map((e)=>
             <>
                 <div className='flex items-center gap-6 w-full border-2 bg-[#DB2777] border-white px-3 py-1 rounded-xl' >
                     <img className='rounded-full w-[60px] h-[60px]' src={`${e.sender.photos.length<1?"https://as1.ftcdn.net/v2/jpg/02/43/12/34/1000_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg":e.sender.photos[0]}`} />
@@ -40,7 +40,9 @@ if(matchState.loading){
                     </div>
                 </div>
             </>
-        )}
+        ):<Typography className='text-white mx-auto' >No Match Requests</Typography>
+            
+        }
     </>
   )
 }
