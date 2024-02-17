@@ -20,7 +20,7 @@ const App = () => {
        <ShowMatch />
       </section>
       {/* mobile screen view */}
-      <section style={{height:"93.2%",padding:"10px"}} className='w-full overflow-auto scrollable-section lg:hidden flex justify-center items-center bg-black ' >
+      <section style={{height:"95.6%",padding:"30px"}} className='w-full overflow-auto scrollable-section lg:hidden flex justify-center bg-black ' >
         {mobileTabNumber===0 && <ShowMatch/>}
         {mobileTabNumber===1 && <Photoscreen/>}
         {mobileTabNumber===2 && <ShowMatchReq/>}

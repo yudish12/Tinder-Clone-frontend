@@ -65,7 +65,7 @@ export const disLikeUserThunk = async (recieverId: string, thunkApi: { rejectWit
 }
 
 export const getMatchReqsThunk = async (x: null, thunkApi: { rejectWithValue: (arg0: unknown) => void; }) => {
-
+    console.log(x)
     const token = await JSON.parse(localStorage.getItem('user')!)
     try {
         const resp = await axios.get(`${import.meta.env.VITE_DEV_API_URI}/api/match/req`, {

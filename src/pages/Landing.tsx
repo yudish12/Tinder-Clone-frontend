@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import BGIMAGE from '../assets/Safeimagekit-resized-img.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';

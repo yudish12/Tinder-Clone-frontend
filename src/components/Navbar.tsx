@@ -46,6 +46,9 @@ const Navbar = ({loginOpen}:{loginOpen:React.Dispatch<React.SetStateAction<boole
             <span className='text-white px-6 rounded-3xl p-2 bg-black w-full font-semibold flex items-center justify-between text-2xl cursor-pointer hover:text-red-500 hover:underline' >Learn<FaChevronDown/></span>
             <span className='text-white px-6 rounded-3xl p-2 bg-black w-full font-semibold flex items-center justify-between text-2xl cursor-pointer hover:text-red-500 hover:underline'> Safety<FaChevronDown/></span>
             <span className='text-white px-6 rounded-3xl p-2 bg-black w-full font-semibold flex items-center justify-between text-2xl cursor-pointer hover:text-red-500 hover:underline'>Support<FaChevronDown/></span>
+            <button onClick={()=>loginOpen(true)} className='flex text-xl items-center font-semibold bg-white rounded-3xl px-12 py-1' >
+                Login
+            </button>
         </div>
     </>
   )

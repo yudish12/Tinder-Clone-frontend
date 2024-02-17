@@ -48,9 +48,11 @@ const ProfilePage = () => {
   }
 
   const ageSliderChange = (event: Event, newValue: number | number[]) => {
+    console.log(event);
     dispatch(setAgeVal(newValue as number));
   };
   const distanceSliderChange = (event: Event, newValue: number | number[]) => {
+    console.log(event);
     dispatch(setDistanceVal(newValue as number));
   };
 

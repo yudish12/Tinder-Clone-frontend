@@ -17,7 +17,12 @@ export const fetchChatThunk = async (matchId: string, thunkApi: { rejectWithValu
     }
 }
 
-export const sendMessageThunk = async (payload: { message: string|null|undefined, recieverId: string, matchId: string|null|undefined }, thunkApi: { rejectWithValue: (arg0: unknown) => void }) => {
+export const sendMessageThunk = async (
+    payload: 
+    { 
+        message: string|null|undefined, recieverId: string, matchId: string|null|undefined }, 
+        thunkApi: { rejectWithValue: (arg0: unknown) => void 
+    }) => {
     const token = await JSON.parse(localStorage.getItem('user')!);
     try {
         const resp = await axios.post(`${import.meta.env.VITE_DEV_API_URI}/api/messages`, { message: payload.message,recieverId:payload.recieverId,matchId:payload.matchId }, {
@@ -27,6 +32,7 @@ export const sendMessageThunk = async (payload: { message: string|null|undefined
             }
         });
         console.log(resp.data.data)
+        //@ts-ignore
         thunkApi.dispatch(fetchChats(resp.data.data.matchId))
         return resp.data.data
     } catch (error) {

@@ -18,7 +18,7 @@ const Chatscreen = ({ socket, chat, setSelectedChat }: { socket: Socket | null, 
   useEffect(() => {
     dispatch(fetchChats(chat._id));
     socket?.on('message', (params) => {
-      console.log(params)
+      console.log(params,21)
       dispatch(fetchChats(chat._id))
     })
 

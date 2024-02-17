@@ -24,7 +24,8 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
                     localStorage.clear()
                     setLoading(false);
                 }
-            } catch (error:unknown) {
+            } catch (error) {
+                //@ts-ignore
                 if(error.response.data.message ==="invalid signature"){
                     localStorage.clear()
                     setLoading(false)

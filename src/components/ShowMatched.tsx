@@ -48,7 +48,7 @@ const ShowMatched = () => {
           {users?.length ? users?.map((e) => {
             const otherUser = e.users[0].email===currUser?.email?e.users[1]:e.users[0];
             return (
-              <div onClick={()=>chatSelectHandler(e)} className='flex mt-4 cursor-pointer items-center gap-6 w-full border-2 bg-[#DB2777] border-white px-3 py-1 rounded-xl' >
+              <div style={{maxHeight:"5rem"}} onClick={()=>chatSelectHandler(e)} className='flex mt-4 cursor-pointer items-center gap-6 w-full border-2 bg-[#DB2777] border-white px-3 py-1 rounded-xl' >
                 <img className='rounded-full w-[60px] h-[60px]'
                   src={
                     `${otherUser.photos.length < 1 ?

@@ -98,7 +98,7 @@ const Photoscreen = () => {
                   </p>
               </>:
               <>
-                <img src={image2} alt="image1" />
+                <img className="h-full" src={image2} alt="image1" />
               </>
             }
           </div>

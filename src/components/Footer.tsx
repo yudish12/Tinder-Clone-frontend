@@ -1,4 +1,3 @@
-import React from 'react'
 import FooterCard from './FooterCard'
 import { FaFacebook, FaInstagram, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa'
 

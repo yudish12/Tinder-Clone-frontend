@@ -1,4 +1,3 @@
-import React from 'react'
 import { RiDoubleQuotesL } from "react-icons/ri";
 const FooterCard = () => {
   return (
